@@ -1,0 +1,21 @@
+# 1. Define the required provider plugin and version constraint
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0" # Targets the latest 6.x release
+    }
+  }
+  backend "s3" {
+    bucket = "honest-terraform-state"
+    key = "honest-terraform-ha/terraform.tfstate"
+    region = "eu-west-2"
+    
+  }
+  required_version = ">= 1.0.0"
+}
+
+# 2. Configure the AWS Provider settings
+provider "aws" {
+  region = "eu-west-2"
+}
